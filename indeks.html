@@ -1,0 +1,359 @@
+
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Untuk Kak Cecel 💗</title>
+
+<style>
+*{box-sizing:border-box}
+
+body{
+ margin:0;
+ background:#050505;
+ color:white;
+ font-family:'Trebuchet MS',sans-serif;
+ overflow:hidden;
+ text-align:center;
+}
+
+.page{
+ display:none;
+ min-height:100vh;
+ width:100%;
+ padding:25px 20px;
+ align-items:center;
+ justify-content:center;
+ flex-direction:column;
+ position:relative;
+ overflow:hidden;
+}
+
+.page.active{
+ display:flex;
+ animation:masuk .8s ease;
+}
+
+@keyframes masuk{
+ from{opacity:0;transform:translateY(20px)}
+ to{opacity:1;transform:translateY(0)}
+}
+
+.content{
+ position:relative;
+ z-index:3;
+ width:100%;
+ max-width:500px;
+}
+
+h1{
+ font-size:28px;
+ line-height:1.5;
+ text-shadow:0 0 15px #ff70bb;
+}
+
+p{
+ font-size:17px;
+ line-height:1.8;
+}
+
+button{
+ border:0;
+ border-radius:30px;
+ padding:14px 30px;
+ margin:9px;
+ background:#ff70bb;
+ color:white;
+ font-size:17px;
+ font-weight:bold;
+ box-shadow:0 0 18px #ff70bb;
+ cursor:pointer;
+}
+
+button:active{transform:scale(.9)}
+
+.no{
+ background:#555;
+ box-shadow:none;
+}
+
+.flower{
+ position:fixed;
+ top:-40px;
+ z-index:1;
+ pointer-events:none;
+ animation:jatuh linear infinite;
+ opacity:.8;
+}
+
+@keyframes jatuh{
+ to{transform:translateY(110vh) rotate(360deg)}
+}
+
+.sticker{
+ font-size:100px;
+ margin:15px;
+ animation:loncat 1.5s infinite;
+}
+
+@keyframes loncat{
+ 50%{transform:translateY(-13px) rotate(5deg)}
+}
+
+.timer{
+ font-size:32px;
+ color:#ff91c8;
+ font-weight:bold;
+ margin:15px;
+}
+
+.small{
+ color:#ffb6d9;
+ font-size:14px;
+}
+
+#sad{
+ color:#ff9cc9;
+ min-height:50px;
+}
+
+.hidden{display:none!important}
+
+</style>
+</head>
+
+<body>
+
+<audio id="musik" loop>
+ <source src="Tip Toe speed up_musicaldown.com_1787704710.mp3" type="audio/mpeg">
+</audio>
+
+<!-- HALAMAN 1 -->
+<section class="page active" id="halaman1">
+ <div class="content">
+
+  <div class="sticker">🌷</div>
+
+  <h1>Haiii Kak Cecelll 💗</h1>
+
+  <p>
+   Aku mau nanya sesuatu nihh...
+   tapi jawabnya jangan asal-asalan yaww.
+  </p>
+
+  <h1>Kamu mau lanjut nggak?? 🥺</h1>
+
+  <button onclick="pilihMau()">MAUUU 💗</button>
+
+  <button class="no" onclick="pilihTidak()">NGGAAA 🙄</button>
+
+  <p id="sad"></p>
+
+  <p class="small">Awas salah pilih, aku perhatiin lohh xixixi 🌸</p>
+
+ </div>
+</section>
+
+<!-- HALAMAN 2 -->
+<section class="page" id="halaman2">
+ <div class="content">
+
+  <div class="sticker">👶🏻</div>
+
+  <h1>Alooo cintakuuu 💗</h1>
+
+  <p>
+   Kamu pasti cape yaww abis pulang kerja,
+   mau aku pijitin ngga tapi virtual yaww Ahahaha 🤣
+  </p>
+
+  <div class="timer" id="timer40">40</div>
+
+  <p id="pesan40" class="small">
+   Tunggu yaaa, aku lagi siapin tenaga buat mijitin kamu xixixi.
+  </p>
+
+  <div id="lanjut2" class="hidden">
+
+   <h2>Kalau kamu mau lanjut yaa...</h2>
+
+   <p>Nanti aku pijitin xixixi 🤭💗</p>
+
+   <button onclick="keHalaman3()">MAU LANJUT 🌸</button>
+
+  </div>
+
+ </div>
+</section>
+
+<!-- HALAMAN 3 -->
+<section class="page" id="halaman3">
+ <div class="content">
+
+  <h1>SAATNYA PIJITTT!! 🤣</h1>
+
+  <div class="sticker">🐼🔨</div>
+
+  <p>
+   Panda sudah datanggg!
+   Siap-siap menerima pijatan paling profesional.
+  </p>
+
+  <p>Jangan kabur yaww HAHAHA.</p>
+
+  <div class="timer" id="timer30">30</div>
+
+  <p class="small">
+   🐼: SATU... DUA... TIGA... DUARRR!
+  </p>
+
+ </div>
+</section>
+
+<!-- HALAMAN 4 -->
+<section class="page" id="halaman4">
+ <div class="content">
+
+  <div class="sticker">🐼🌸</div>
+
+  <h1>Pesan Rahasia Panda 🐼</h1>
+
+  <p id="teksPanda">
+   Ada sesuatu yang mau panda sampaikan...
+  </p>
+
+  <button onclick="bicara()">🔊 DENGARKAN PANDA</button>
+
+  <p class="small">
+   Dengerin sampai selesai yaww 🤣
+  </p>
+
+  <div style="font-size:30px">
+   🌷 🌸 💗 🌺 🌷
+  </div>
+
+ </div>
+</section>
+
+<script>
+
+// BUNGA ANIMASI
+const bunga=["🌸","🌷","🌺","💮","🌼","✨"];
+
+for(let i=0;i<28;i++){
+ let el=document.createElement("div");
+ el.className="flower";
+ el.textContent=bunga[Math.floor(Math.random()*bunga.length)];
+ el.style.left=Math.random()*100+"%";
+ el.style.fontSize=(15+Math.random()*17)+"px";
+ el.style.animationDuration=(6+Math.random()*9)+"s";
+ el.style.animationDelay=(-Math.random()*12)+"s";
+ document.body.appendChild(el);
+}
+
+// PINDAH HALAMAN
+function pindah(n){
+ document.querySelectorAll(".page").forEach(p=>{
+  p.classList.remove("active");
+ });
+ document.getElementById("halaman"+n).classList.add("active");
+}
+
+// MUSIK
+function mulaiMusik(){
+ const m=document.getElementById("musik");
+ m.volume=.45;
+ m.play().catch(()=>{});
+}
+
+// PILIH MAU
+function pilihMau(){
+ mulaiMusik();
+ pindah(2);
+ timerKedua();
+}
+
+// PILIH TIDAK
+function pilihTidak(){
+ document.getElementById("sad").innerHTML=
+ "Yahhh kok pilih ngga sihhh 🥺💔 aku sedih sii seng, masa kamu tega sama aku...";
+}
+
+// TIMER 40 DETIK
+function timerKedua(){
+ let waktu=40;
+ let angka=document.getElementById("timer40");
+
+ const interval=setInterval(()=>{
+  waktu--;
+  angka.textContent=waktu;
+
+  if(waktu<=0){
+   clearInterval(interval);
+   angka.textContent="SELESAIII 💗";
+
+   document.getElementById("pesan40").textContent=
+   "Yeayyy sekarang waktunya lanjuttt!";
+
+   document.getElementById("lanjut2").classList.remove("hidden");
+  }
+ },1000);
+}
+
+// KE HALAMAN 3
+function keHalaman3(){
+ pindah(3);
+ timerKetiga();
+}
+
+// TIMER 30 DETIK
+function timerKetiga(){
+ let waktu=30;
+ let angka=document.getElementById("timer30");
+
+ const interval=setInterval(()=>{
+  waktu--;
+  angka.textContent=waktu;
+
+  if(waktu<=0){
+   clearInterval(interval);
+   angka.textContent="PIJIT SELESAI 🤣";
+
+   setTimeout(()=>{
+    pindah(4);
+   },1500);
+  }
+ },1000);
+}
+
+// DIALOG ASLI KAK IKI
+const dialogPanda =
+"Pandanya ka cecelll maaf yaww pijitnya keras pake palu xixiix nanti kaka cecel marahnya ke kak ikii aja soalnya aku di utus ka iki buat pijitin kekasihnya, eh ka cecel jangan bilang bilang aku sebut kekasih yaa soalnya ka ikii gengsi kalo mau sebut kekasih padahal mah sebenarnya ka ikii rinduu hehe. yaudah kaka cecel aku pamit yaww nanti marah aja ke kak iki bye bye";
+
+// SUARA PANDA
+function bicara(){
+
+ if(!("speechSynthesis" in window)){
+  alert("Browser belum mendukung suara panda 😭");
+  return;
+ }
+
+ speechSynthesis.cancel();
+
+ const suara=new SpeechSynthesisUtterance(dialogPanda);
+
+ suara.lang="id-ID";
+ suara.rate=1.05;
+ suara.pitch=1.7;
+ suara.volume=1;
+
+ speechSynthesis.speak(suara);
+
+ document.getElementById("teksPanda").textContent=dialogPanda;
+}
+
+</script>
+
+</body>
+</html>
